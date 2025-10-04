@@ -1,12 +1,13 @@
 global _start
 
 SECTION .bss
-hello1: resb 64
 hello2: resb 64
 
 SECTION .data
-fb0 db "/dev/fb0"
+fb0 db "/dev/fb0", 0
 filedesc dq 0
+vinfo times 160 db 0
+finfo times 88 db 0
 
 SECTION .text
 
@@ -22,13 +23,13 @@ _start:
   mov rax, 16
   mov rdi, [filedesc]
   mov rsi, 0x4600
-  mov rdx, hello1
+  mov rdx, vinfo
   syscall 
 
   mov rax, 16
   mov rdi, [filedesc]
   mov rsi, 0x4602
-  mov rdx, hello2
+  mov rdx, finfo
   syscall 
 
 exit:
