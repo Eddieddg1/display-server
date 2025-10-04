@@ -1,7 +1,6 @@
 global _start
 
 SECTION .bss
-hello2: resb 64
 
 SECTION .data
 fb0 db "/dev/fb0", 0
